@@ -1,2 +1,2 @@
 # repotest
-I created this as part of an introduction to a github course.
+I created this as part of a course which includes an introduction to github.
