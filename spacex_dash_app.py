@@ -57,16 +57,14 @@ app.layout = html.Div(children=[html.H1('SpaceX Launch Records Dashboard',
 @app.callback(Output(component_id='success-pie-chart', component_property='figure'),
               Input(component_id='site-dropdown', component_property='value'))
 def get_pie_chart(entered_site):
-       # filtered_df = spacex_df[['Launch Site','class']]
-        
+        filtered_df = spacex_df[['Launch Site','class']]      
         if entered_site == 'ALL':
             filtered_df = spacex_df[['Launch Site','class']]
             filtered_df = filtered_df.groupby(['Launch Site'],as_index=False).sum()
             fig = px.pie(filtered_df, values='class', names=filtered_df['Launch Site'], title='Total Success Launch By Site')
             return fig
         else:
-            if entered_site == 'CCAFS LC-40':
-                filtered_df = spacex_df[['Launch Site','class']]
+            if entered_site == 'CCAFS LC-40':           
                 filtered_df = filtered_df[filtered_df['Launch Site'] == 'CCAFS LC-40']   
                 filtered_df = filtered_df.groupby(['class'],as_index=False).count()           
                 fig = px.pie(filtered_df, values=filtered_df['Launch Site'], 
@@ -74,7 +72,6 @@ def get_pie_chart(entered_site):
                 title='Total Success Launches for site CCAFS LC-40')
                 return fig
             if entered_site == 'CCAFS SLC-40':
-                filtered_df = spacex_df[['Launch Site','class']]
                 filtered_df = filtered_df[filtered_df['Launch Site'] == 'CCAFS SLC-40']
                 filtered_df = filtered_df.groupby(['class'],as_index=False).count()           
                 fig = px.pie(filtered_df, values=filtered_df['Launch Site'],  
@@ -82,7 +79,6 @@ def get_pie_chart(entered_site):
                 title='Total Success Launches for site CCAFS SLC-40')
                 return fig
             if entered_site == 'KSC LC-39A':
-                filtered_df = spacex_df[['Launch Site','class']]
                 filtered_df = filtered_df[filtered_df['Launch Site'] == 'KSC LC-39A']
                 filtered_df = filtered_df.groupby(['class'],as_index=False).count()           
                 fig = px.pie(filtered_df, values=filtered_df['Launch Site'],  
@@ -90,7 +86,6 @@ def get_pie_chart(entered_site):
                 title='Total Success Launches for site KSC LC-39A')
                 return fig
             if entered_site == 'VAFB SLC-4E':
-                filtered_df = spacex_df[['Launch Site','class']]
                 filtered_df = filtered_df[filtered_df['Launch Site'] == 'VAFB SLC-4E']
                 filtered_df = filtered_df.groupby(['class'],as_index=False).count()           
                 fig = px.pie(filtered_df, values=filtered_df['Launch Site'],  
