@@ -105,49 +105,45 @@ def get_pie_chart(entered_site):
 def get_scatter_chart(entered_site, entered_payload_range):
         filtered_df = spacex_df[['Launch Site','class','Payload Mass (kg)', 'Booster Version Category']]
         low, high = entered_payload_range
-        if entered_site == 'ALL':
-            mask = (filtered_df['Payload Mass (kg)'] > low) & (filtered_df['Payload Mass (kg)'] < high)
+        mask = (filtered_df['Payload Mass (kg)'] > low) & (filtered_df['Payload Mass (kg)'] < high)
+        if entered_site == 'ALL':           
             fig = px.scatter(filtered_df[mask], x='Payload Mass (kg)', y='class', 
                 color =   'Booster Version Category')
             fig.update_layout(title =
-                'Relation between Payload Mass and Outcome',
+                'Correlation between Payload and Success for All Sites',
                 xaxis_title = 'Payload Mass (kg)', yaxis_title = 'Class')
             return fig
         else:
             if entered_site == 'CCAFS LC-40':
-                mask = (filtered_df['Payload Mass (kg)'] > low) & (filtered_df['Payload Mass (kg)'] < high)
                 filtered_df = filtered_df[filtered_df['Launch Site'] == 'CCAFS LC-40']   
                 fig = px.scatter(filtered_df[mask], x='Payload Mass (kg)', y='class', 
                     color =   'Booster Version Category')
                 fig.update_layout(title =
-                    'Relation between Payload Mass and Outcome',
+                    'Correlation between Payload and Success for CCAFS LC-40',
                     xaxis_title = 'Payload Mass (kg)', yaxis_title = 'Class')
                 return fig
             if entered_site == 'CCAFS SLC-40':
-                mask = (filtered_df['Payload Mass (kg)'] > low) & (filtered_df['Payload Mass (kg)'] < high)
                 filtered_df = filtered_df[filtered_df['Launch Site'] == 'CCAFS SLC-40']
                 fig = px.scatter(filtered_df[mask], x='Payload Mass (kg)', y='class', 
                     color =   'Booster Version Category')
                 fig.update_layout(title =
-                    'Relation between Payload Mass and Outcome',
+                    'Correlation between Payload and Success for CCAFS SLC-40',
                     xaxis_title = 'Payload Mass (kg)', yaxis_title = 'Class')
                 return fig
             if entered_site == 'KSC LC-39A':
-                mask = (filtered_df['Payload Mass (kg)'] > low) & (filtered_df['Payload Mass (kg)'] < high)
                 filtered_df = filtered_df[filtered_df['Launch Site'] == 'KSC LC-39A']
                 fig = px.scatter(filtered_df[mask], x='Payload Mass (kg)', y='class', 
                     color =   'Booster Version Category')
                 fig.update_layout(title =
-                    'Relation between Payload Mass and Outcome',
+                    'Correlation between Payload and Success for KSC LC-39A',
                     xaxis_title = 'Payload Mass (kg)', yaxis_title = 'Class')
                 return fig
             if entered_site == 'VAFB SLC-4E':
-                mask = (filtered_df['Payload Mass (kg)'] > low) & (filtered_df['Payload Mass (kg)'] < high)
                 filtered_df = filtered_df[filtered_df['Launch Site'] == 'VAFB SLC-4E']
                 fig = px.scatter(filtered_df[mask], x='Payload Mass (kg)', y='class', 
                     color =   'Booster Version Category')
                 fig.update_layout(title =
-                    'Relation between Payload Mass and Outcome',
+                    'Correlation between Payload and Success for VAFB SLC-4E',
                     xaxis_title = 'Payload Mass (kg)', yaxis_title = 'Class')
                 return fig       
 
